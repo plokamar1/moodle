@@ -16,4 +16,5 @@ Feature: Atto unordered list button
     And I set the field "Text editor" to "Plain text area"
     And I press "Save changes"
     And I follow "Edit profile"
-    Then "//textarea[@id='id_description_editor'][starts-with(text(), '<ul><li>') and contains(normalize-space(.), 'Things, dogs, clogs')]" "xpath_element" should exist
+    Then I should see "<ul><li>Things, dogs, clogs"
+

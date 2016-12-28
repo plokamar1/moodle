@@ -37,18 +37,9 @@ if ($categoryid) {
     // And the object has been loaded for us no need for another DB call
     $category = $PAGE->category;
 } else {
-    // Check if there is only one category, if so use that.
-    if (coursecat::count_all() == 1) {
-        $category = coursecat::get_default();
-
-        $categoryid = $category->id;
-        $PAGE->set_category_by_id($categoryid);
-        $PAGE->set_pagetype('course-index-category');
-    } else {
-        $PAGE->set_context(context_system::instance());
-    }
-
+    $categoryid = 0;
     $PAGE->set_url('/course/index.php');
+    $PAGE->set_context(context_system::instance());
 }
 
 $PAGE->set_pagelayout('coursecategory');

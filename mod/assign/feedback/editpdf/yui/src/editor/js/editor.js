@@ -156,7 +156,7 @@ EDITOR.prototype = {
      * @type String
      * @protected
      */
-    lastannotationtool: "pen",
+    lastanntationtool : "pen",
 
     /**
      * The users comments quick list

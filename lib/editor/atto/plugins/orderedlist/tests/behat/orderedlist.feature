@@ -16,4 +16,5 @@ Feature: Atto ordered list button
     And I set the field "Text editor" to "Plain text area"
     And I press "Save changes"
     And I follow "Edit profile"
-    Then "//textarea[@id='id_description_editor'][starts-with(text(), '<ol><li>') and contains(normalize-space(.), 'Have you heard the news everyone')]" "xpath_element" should exist
+    Then I should see "<ol><li>Have you heard the news everyone's talking"
+

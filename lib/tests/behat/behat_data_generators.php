@@ -163,7 +163,7 @@ class behat_data_generators extends behat_base {
         'question categories' => array(
             'datagenerator' => 'question_category',
             'required' => array('name', 'contextlevel', 'reference'),
-            'switchids' => array('questioncategory' => 'parent')
+            'switchids' => array('questioncategory' => 'category')
         ),
         'questions' => array(
             'datagenerator' => 'question',

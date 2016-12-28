@@ -125,15 +125,13 @@ function enrol_get_plugin($name) {
 
     $location = "$CFG->dirroot/enrol/$name";
 
+    if (!file_exists("$location/lib.php")) {
+        return null;
+    }
+    include_once("$location/lib.php");
     $class = "enrol_{$name}_plugin";
     if (!class_exists($class)) {
-        if (!file_exists("$location/lib.php")) {
-            return null;
-        }
-        include_once("$location/lib.php");
-        if (!class_exists($class)) {
-            return null;
-        }
+        return null;
     }
 
     return new $class();

@@ -77,6 +77,9 @@ cache:
       - $HOME/.npm
 
 install:
+    # Disable xdebug. We aren't generating code coverage, and it has a huge impact upon test performance.
+    - rm /home/travis/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+
     - >
         if [ "$TASK" = 'PHPUNIT' ];
         then
@@ -99,7 +102,6 @@ install:
         fi
 
 before_script:
-    - phpenv config-rm xdebug.ini
     - >
       if [ "$TASK" = 'PHPUNIT' -o "$TASK" = 'UPGRADE' ];
       then

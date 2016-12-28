@@ -44,7 +44,7 @@ class data_field_menu extends data_field_base {
         $rawoptions = explode("\n",$this->field->param1);
         foreach ($rawoptions as $option) {
             $option = trim($option);
-            if (strlen($option) > 0) {
+            if ($option) {
                 $options[$option] = $option;
             }
         }

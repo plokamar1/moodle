@@ -107,9 +107,6 @@ class core_competency_exporter_testcase extends advanced_testcase {
         $output = $PAGE->get_renderer('tool_lp');
 
         $result = $exporter->export($output);
-
-        $this->assertSame('Another string', $result->otherstring);
-        $this->assertSame(array('String a', 'String b'), $result->otherstrings);
     }
 }
 
@@ -129,8 +126,8 @@ class core_competency_testable_exporter extends \core_competency\external\export
 
     protected function get_other_values(renderer_base $output) {
         return array(
-            'otherstring' => 'Another <strong>string</strong>',
-            'otherstrings' => array('String a', 'String <strong>b</strong>')
+            'otherstring' => 'An other string',
+            'otherstrings' => array('String a', 'String b')
         );
     }
 

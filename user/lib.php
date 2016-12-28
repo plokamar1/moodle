@@ -828,8 +828,8 @@ function user_get_user_navigation_info($user, $page, $options = array()) {
     if (isset($SESSION->justloggedin)) {
         // Don't unset this flag as login_info still needs it.
         if (!empty($CFG->displayloginfailures)) {
-            // Don't reset the count either, as login_info() still needs it too.
-            if ($count = user_count_login_failures($user, false)) {
+            // We're already in /user/lib.php, so we don't need to include.
+            if ($count = user_count_login_failures($user)) {
 
                 // Get login failures string.
                 $a = new stdClass();

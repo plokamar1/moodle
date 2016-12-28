@@ -75,7 +75,7 @@ if (!empty($delall) && confirm_sesskey()) {
     exit;
 }
 
-if (!empty($ignore) && confirm_sesskey()) {
+if (!empty($ignore)) {
     unset($SESSION->users_result[$id]);
     echo json_encode(true);
     exit;
