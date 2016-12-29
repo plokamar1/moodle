@@ -24,6 +24,11 @@
  */
 
 // NOTE: no MOODLE_INTERNAL test here, this file may be required by behat before including /config.php.
+<<<<<<< HEAD
+=======
+
+use Behat\Mink\Exception\ElementNotFoundException as ElementNotFoundException;
+>>>>>>> merge_helper
 
 require_once(__DIR__ . '/../../../lib/behat/behat_base.php');
 
@@ -112,5 +117,25 @@ class behat_blocks extends behat_base {
         $this->execute('behat_general::i_click_on_in_the',
             array("Configure", "link", $this->escape($blockname), "block")
         );
+    }
+
+    /**
+     * Ensures that block can be added to the page but does not actually add it.
+     *
+     * @Then /^the add block selector should contain "(?P<block_name_string>(?:[^"]|\\")*)" block$/
+     * @param string $blockname
+     */
+    public function the_add_block_selector_should_contain_block($blockname) {
+        $this->execute('behat_forms::the_select_box_should_contain', [get_string('addblock'), $blockname]);
+    }
+
+    /**
+     * Ensures that block can not be added to the page.
+     *
+     * @Then /^the add block selector should not contain "(?P<block_name_string>(?:[^"]|\\")*)" block$/
+     * @param string $blockname
+     */
+    public function the_add_block_selector_should_not_contain_block($blockname) {
+        $this->execute('behat_forms::the_select_box_should_not_contain', [get_string('addblock'), $blockname]);
     }
 }

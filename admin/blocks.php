@@ -4,6 +4,7 @@
 
     require_once('../config.php');
     require_once($CFG->libdir.'/adminlib.php');
+    require_once($CFG->libdir.'/blocklib.php');
     require_once($CFG->libdir.'/tablelib.php');
 
     admin_externalpage_setup('manageblocks');
@@ -49,15 +50,8 @@
         admin_get_root(true, false);  // settings not required - only pages
     }
 
-    if (!isset($CFG->undeletableblocktypes) || (!is_array($CFG->undeletableblocktypes) && !is_string($CFG->undeletableblocktypes))) {
-        $undeletableblocktypes = array('navigation', 'settings');
-    } else if (is_string($CFG->undeletableblocktypes)) {
-        $undeletableblocktypes = explode(',', $CFG->undeletableblocktypes);
-    } else {
-        $undeletableblocktypes = $CFG->undeletableblocktypes;
-    }
-
     if (!empty($protect) && confirm_sesskey()) {
+<<<<<<< HEAD
         if (!$block = $DB->get_record('block', array('id'=>$protect))) {
             print_error('blockdoesnotexist', 'error');
         }
@@ -65,10 +59,14 @@
             $undeletableblocktypes[] = $block->name;
             set_config('undeletableblocktypes', implode(',', $undeletableblocktypes));
         }
+=======
+        block_manager::protect_block((int)$protect);
+>>>>>>> merge_helper
         admin_get_root(true, false);  // settings not required - only pages
     }
 
     if (!empty($unprotect) && confirm_sesskey()) {
+<<<<<<< HEAD
         if (!$block = $DB->get_record('block', array('id'=>$unprotect))) {
             print_error('blockdoesnotexist', 'error');
         }
@@ -76,8 +74,13 @@
             $undeletableblocktypes = array_diff($undeletableblocktypes, array($block->name));
             set_config('undeletableblocktypes', implode(',', $undeletableblocktypes));
         }
+=======
+        block_manager::unprotect_block((int)$unprotect);
+>>>>>>> merge_helper
         admin_get_root(true, false);  // settings not required - only pages
     }
+
+    $undeletableblocktypes = block_manager::get_undeletable_block_types();
 
     echo $OUTPUT->header();
     echo $OUTPUT->heading($strmanageblocks);
